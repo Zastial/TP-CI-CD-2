@@ -63,7 +63,7 @@ jobs:
         run: npm run test
 
       - name: Start server for e2e tests
-        run: npm run start
+        run: node src/app.js
 
       - name: Run Cypress tests
         run: npx cypress run --browser chrome --headless
