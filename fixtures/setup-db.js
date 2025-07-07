@@ -32,7 +32,6 @@ async function setup() {
     console.log('Table créée et utilisateurs insérés.');
   } catch (err) {
     console.error('Erreur lors de la préparation de la base :', err);
-    process.exit(1);
   } finally {
     if (conn) conn.release();
     await pool.end();

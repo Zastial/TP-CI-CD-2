@@ -6,6 +6,7 @@ const app = express()
 const port = 3000
 
 app.use(bodyParser.urlencoded({ extended: false }))
+// eslint-disable-next-line no-undef
 app.use(express.static(path.join(__dirname, '../public')))
 
 const formRoutes = require('./routes/form').router
