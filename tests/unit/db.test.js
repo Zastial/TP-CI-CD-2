@@ -12,7 +12,10 @@ jest.mock('mariadb', () => ({
 const { insertDB } = require('../../src/routes/form')
 
 test('insertDB', async () => {
-  const mockQuery = jest.fn().mockResolvedValue({})
+  const mockQuery = jest.fn()
+    .mockResolvedValueOnce([]) // SELECT
+    .mockResolvedValueOnce({}) // INSERT
+
   const mockConn = { query: mockQuery }
 
   await insertDB(mockConn, 'Alice', 'alice@mail.com')

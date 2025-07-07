@@ -12,13 +12,22 @@ router.get('/', (req, res) => {
 
 async function insertDB(conn, name, email) {
   try {
-      await conn.query(
-          'INSERT INTO submissions (name, email) VALUES (?, ?)',
-          [name, email]
-      )
+    // Check if user already exists with this email
+    const [existing] = await conn.query(
+      'SELECT * FROM submissions WHERE email = ?',
+      [email]
+    )
+    if (existing) {
+      return { exists: true, user: existing }
+    }
+    await conn.query(
+      'INSERT INTO submissions (name, email) VALUES (?, ?)',
+      [name, email]
+    )
+    return { exists: false }
   } catch (err) {
-      console.error('Erreur lors de l\'insertion dans la base de données:', err)
-      throw err
+    console.error('Erreur lors de l\'insertion dans la base de données:', err)
+    throw err
   }
 }
 
