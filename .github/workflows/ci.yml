@@ -59,8 +59,5 @@ jobs:
       - name: Setup database with fixtures
         run: node fixtures/setup-db.js
 
-      - name: Run unit tests
+      - name: Run unit & e2e tests
         run: npm run test
-
-      - name: Run e2e tests
-        run: npm run test:e2e
