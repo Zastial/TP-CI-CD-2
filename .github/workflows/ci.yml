@@ -62,5 +62,8 @@ jobs:
       - name: Run unit & e2e tests
         run: npm run test
 
+      - name: Start server for e2e tests
+        run: npm run start
+
       - name: Run Cypress tests
         run: npx cypress run --browser chrome --headless
